@@ -12,12 +12,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8080/api/accounts",
+          "raw": "http://localhost:8180/api/accounts",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "8080",
+          "port": "8180",
           "path": [
             "api",
             "accounts"
@@ -44,12 +44,12 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/auth/login",
+          "raw": "http://localhost:8180/auth/login",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "8080",
+          "port": "8180",
           "path": [
             "auth",
             "login"
@@ -108,12 +108,12 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/auth/login",
+          "raw": "http://localhost:8180/auth/login",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "8080",
+          "port": "8180",
           "path": [
             "auth",
             "login"
@@ -138,12 +138,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8083/atm/accounts",
+          "raw": "http://localhost:8183/atm/accounts",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "8083",
+          "port": "8183",
           "path": [
             "atm",
             "accounts"
@@ -177,12 +177,12 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8083/atm/accounts/withdraw",
+          "raw": "http://localhost:8183/atm/accounts/withdraw",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "8083",
+          "port": "8183",
           "path": [
             "atm",
             "accounts",
@@ -208,12 +208,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8082/mobile/accounts",
+          "raw": "http://localhost:8182/mobile/accounts",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "8082",
+          "port": "8182",
           "path": [
             "mobile",
             "accounts"
@@ -238,12 +238,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8081/web/accounts",
+          "raw": "http://localhost:8181/web/accounts",
           "protocol": "http",
           "host": [
             "localhost"
           ],
-          "port": "8081",
+          "port": "8181",
           "path": [
             "web",
             "accounts"
