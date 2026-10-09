@@ -1,0 +1,88 @@
+
+services:
+  eureka-server:
+    image: eureka-server:1.0
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
+  config-server:
+    image: config-server:1.0
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./config-repo:/config-repo
+    environment:
+      SPRING_PROFILES_ACTIVE: native
+      SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: file:/config-repo
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    depends_on:
+      - eureka-server
+
+  auth-server:
+    image: auth-server:1.0
+    container_name: auth-server
+    ports:
+      - "9000:9000"
+    environment:
+      SPRING_SECURITY_OAUTH2_AUTHORIZATIONSERVER_ISSUER: http://auth-server:9000
+
+  cuenta-service:
+    image: cuenta-service:1.0
+    container_name: cuenta-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://auth-server:9000
+    depends_on:
+      - config-server
+      - eureka-server
+      - auth-server
+
+  movimiento-service:
+    image: movimiento-service:1.0
+    container_name: movimiento-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://auth-server:9000
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/banco_bff?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    depends_on:
+      - config-server
+      - eureka-server
+      - auth-server
+
+  transaccion-service:
+    image: transaccion-service:1.0
+    container_name: transaccion-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://auth-server:9000
+      SPRING_APPLICATION_JSON: '{"eureka":{"client":{"serviceUrl":{"defaultZone":"http://eureka-server:8761/eureka/"}}}}'
+    depends_on:
+      - config-server
+      - eureka-server
+      - auth-server
+
+  cliente-service:
+    image: cliente-service:1.0
+    container_name: cliente-service
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://auth-server:9000
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/banco_bff?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    depends_on:
+      - config-server
+      - eureka-server
+      - auth-server

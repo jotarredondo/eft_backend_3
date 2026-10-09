@@ -1,0 +1,302 @@
+{
+  "info": {
+    "_postman_id": "3d16da21-f66b-417b-9b54-3fffbb48772d",
+    "name": "SPRING_CLOUD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "14664338"
+  },
+  "item": [
+    {
+      "name": "TEST_CONFIG_SERVER",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8888/cuenta-service/default",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "cuenta-service",
+            "default"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_CTA_SERVICE",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/cuentas/prueba",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "cuentas",
+            "prueba"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_CTA_BEARER_AUTH",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/cuentas/prueba",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "cuentas",
+            "prueba"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_CTA_BASIC_AUTH + MOVIMIENTO SERVICE",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/cuentas/103/movimientos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "cuentas",
+            "103",
+            "movimientos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_MOVIMIENTO_SERVICE",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/movimientos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "movimientos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_MOVIMIENTO_SERVICE_BASIC_AUTH",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "usuario",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/movimientos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "movimientos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_TRANSACCION_KAFKA",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "usuario",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"cuentaId\": 103,\r\n  \"tipo\": \"RETIRO\",\r\n  \"monto\": 500\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/transacciones",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "transacciones"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_CONFIG_",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "usuario",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8888/movimiento-service/default",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8888",
+          "path": [
+            "movimiento-service",
+            "default"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_AUTH_SERVER",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "banco-client",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "banco-secret",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials"
+            },
+            {
+              "key": "scope",
+              "value": "read write"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:9000/oauth2/token",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9000",
+          "path": [
+            "oauth2",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

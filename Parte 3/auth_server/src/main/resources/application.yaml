@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: auth-server
+
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          banco-client:
+            registration:
+              client-id: banco-client
+              client-secret: "{noop}banco-secret"
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types:
+                - client_credentials
+              scopes:
+                - read
+                - write

@@ -1,0 +1,44 @@
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: movimiento-service
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI:http://localhost:9000}
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/banco_bff?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: root
+    password: user_ADMIN1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  kafka:
+    bootstrap-servers:
+      - 52.204.246.248:29092
+      - 52.204.246.248:39092
+      - 52.204.246.248:49092
+
+    consumer:
+      group-id: movimiento-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+    properties:
+      spring.json.trusted.packages: "*"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}

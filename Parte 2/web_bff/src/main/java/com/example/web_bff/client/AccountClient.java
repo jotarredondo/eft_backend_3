@@ -16,7 +16,7 @@ public class AccountClient {
 
     public AccountClient() {
         this.restClient = RestClient.builder()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://localhost:8180")
                 .build();
     }
 

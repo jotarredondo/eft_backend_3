@@ -1,0 +1,37 @@
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: cuenta-service
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI:http://localhost:9000}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+
+mensaje:
+  prueba: "Hola desde Config Server"
+
+resilience4j:
+  retry:
+    retryAspectOrder: 2
+    instances:
+      movimientoService:
+        maxAttempts: 3
+        waitDuration: 1s
+
+  circuitbreaker:
+    circuitBreakerAspectOrder: 1
+    instances:
+      movimientoService:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
