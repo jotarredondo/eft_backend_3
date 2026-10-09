@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "3d16da21-f66b-417b-9b54-3fffbb48772d",
-    "name": "SPRING_CLOUD",
+    "_postman_id": "6ea9e882-1717-46b9-bf62-1f549ea8111c",
+    "name": "PARTE3_COLLECTION",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "14664338"
   },
@@ -117,12 +117,19 @@
       "name": "TEST_MOVIMIENTO_SERVICE",
       "request": {
         "auth": {
-          "type": "noauth"
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
         },
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:8082/api/movimientos",
+          "raw": "http://localhost:8082/api/movimientos/cuenta/103",
           "protocol": "http",
           "host": [
             "localhost"
@@ -130,7 +137,9 @@
           "port": "8082",
           "path": [
             "api",
-            "movimientos"
+            "movimientos",
+            "cuenta",
+            "103"
           ]
         }
       },
@@ -140,16 +149,11 @@
       "name": "TEST_MOVIMIENTO_SERVICE_BASIC_AUTH",
       "request": {
         "auth": {
-          "type": "basic",
-          "basic": [
+          "type": "bearer",
+          "bearer": [
             {
-              "key": "username",
-              "value": "usuario",
-              "type": "string"
-            },
-            {
-              "key": "password",
-              "value": "1234",
+              "key": "token",
+              "value": "",
               "type": "string"
             }
           ]
@@ -172,19 +176,44 @@
       "response": []
     },
     {
-      "name": "TEST_TRANSACCION_KAFKA",
+      "name": "TEST_CLIENTE_SERVICE_",
       "request": {
         "auth": {
-          "type": "basic",
-          "basic": [
+          "type": "bearer",
+          "bearer": [
             {
-              "key": "username",
-              "value": "usuario",
+              "key": "token",
+              "value": "",
               "type": "string"
-            },
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8084/api/clientes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8084",
+          "path": [
+            "api",
+            "clientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_TRANSACCION_KAFKA_PAGO",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
             {
-              "key": "password",
-              "value": "1234",
+              "key": "token",
+              "value": "",
               "type": "string"
             }
           ]
@@ -193,7 +222,85 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"cuentaId\": 103,\r\n  \"tipo\": \"RETIRO\",\r\n  \"monto\": 500\r\n}",
+          "raw": "{\r\n  \"cuentaId\": 1001,\r\n  \"tipo\": \"PAGO\",\r\n  \"monto\": 25000,\r\n  \"descripcion\": \"Pago supermercado\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/transacciones",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "transacciones"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_TRANSACCION_KAFKA_DEPOSITO",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"cuentaId\": 103,\r\n  \"tipo\": \"DEPOSITO\",\r\n  \"monto\": 9999,\r\n  \"descripcion\": \"PRUEBA KAFKA PERSISTENCIA 2\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8083/api/transacciones",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8083",
+          "path": [
+            "api",
+            "transacciones"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TEST_TRANSACCION_KAFKA_TRANSFERENCIA",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"cuentaId\": 103,\r\n  \"tipo\": \"PAGO\",\r\n  \"monto\": 15000,\r\n  \"descripcion\": \"Pago persistido desde Kafka\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -251,7 +358,7 @@
       "response": []
     },
     {
-      "name": "TEST_AUTH_SERVER",
+      "name": "GET_AUTH_SERVER_TOKEN",
       "request": {
         "auth": {
           "type": "basic",
